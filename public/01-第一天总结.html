@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    1. 电商全端项目介绍： 综合前端移动端 + 前端PC端 + nodejs后端 称之全端项目（只学前端部分移动端和PC端）  独立完成前端+后端 就是全栈工程师
+    2. 乐淘项目环境
+        1. 需要依赖nodejs 安装nodejs
+        2. nodejs里面还依赖数据 还需要使用mysql数据库
+    3. 乐淘项目启动
+        1. 导入数据库    注意编码问题  和启动数据库
+        2. 启动项目 打开letao-master根目录  打开黑窗 输入 npm start
+        3. 访问页面
+            1. 使用url方式
+            2. 使用书签的方式(推荐)  
+                1. 导入书签
+                2. 把书签拖出来
+    4. 项目结构
+        1. 除了public其他都是后台nodejs 的目录
+        2. 重点关注public
+            1. admin 自写后台
+            2. m 自写移动端
+            3. manage 完成后台
+            4. mobile 完整的移动端
+            5. upload 黄图所在目录（使用后台上传一些图片的目录）
+    5. 写前端代码
+        1. 在public里面 移动端 m 里面   PC后台 就在admin里面写
+        2. 完整用来参考效果
+    6. 主页搭建
+        1. 加视口
+        2. 引包
+            1. 引入mui.css (项目需要使用MUI框架 和bootstrap类似是UI框架 针对移动端的)
+            2. 引入fontawomse.css (字体图标的css文件 存储了项目需要的图标)
+            3. 引入index.css 主页的样式
+            4. 引入mui.js
+            5. 引入index.js 自己的js
+          原则：先引入第三方再引入自己 如果有依赖关系先引入依赖再引入不依赖
+    7. 首页结构
+        1. 上 中 下的结构（类似jd分类页面）
+        2. 上下 高度固定  中间自适应flex:1   一定给父元素body设置flex布局 垂直排列 和高度 100vh
+        3. 上面 左中右布局 使用flex布局
+        4. 下面 使用栅格布局
+        5. 中间 自适应
+            1. 轮播图 使用MUI轮播图组件 （复制代码的不要复制官网文档代码不全面 也不要复制demo的检查元素代码多了一些没用的）
+                去demo里面查看源代码复制源代码
+            2. 默认无法自动轮播 需要手动初始化
+            3. 导航 使用栅格布局
+            4. 广告 各种专区 使用栅格布局 全部放图片
+    8. 首页区域滚动
+        1. 为什么要区域滚动： 页面内容超出屏幕高度 滚动条不流畅体验不好推荐使用区域滚动滑动的效果
+        2. 怎么用
+            1. 找到官网文档区域滚动的代码
+            <!-- 区域滚动父容器 -->
+            <div class="mui-scroll-wrapper">
+                <!-- 区域滚动的子容器 -->
+                <div class="mui-scroll">
+                    <!--这里放置真实显示的DOM内容-->
+                    <!-- 真实的滚动的内容 -->
+                </div>
+            </div>
+            2. 初始化
+            mui('.mui-scroll-wrapper').scroll({
+                scrollY: true, //是否竖向滚动
+                scrollX: false, //是否横向滚动
+                startX: 0, //初始化时滚动至x
+                startY: 0, //初始化时滚动至y
+                indicators: true, //是否显示滚动条
+                deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏
+                bounce: true //是否启用回弹
+            });
+            3. 修改样式 （最最重要）               
+                1. 给父元素设置相对定位
+                // 1. 给父元素比如main设置相对定位
+                // position: relative;
+                2. 给自己去掉定位样式
+                .mui-scroll-wrapper {
+                    // 默认设置了绝对定位所以飘了
+                    // 2. 给自己 区域滚动父容器设置相对定位 但是默认没有高度 设置成父元素一样高
+                    // position: absolute;
+                    position: relative;
+                    // 手动设置高度和父元素一样
+                    height: 100%;
+                    // 区域滚动子容器 高度是auto的
+                    // .mui-scroll{
+            
+                    // }
+                }
+    9. 分类页面布局
+        1. 头部也是左 中 右 一样 但是内容中间是一个表单 去掉表单的默认样式
+        2. 分类中间 左右布局 左边固定宽度 右边flex:1自适应
+        3. 左边内容使用 mui的列表 
+        4. 右边的内容使用栅格系统 里面放图片和文字
+    10. 分类页面的区域滚动
+        1. 分开左边和右边都要滚动 但是要分开滚动
+        2. 分别给左边放区域滚动的结构
+        3. 右边放区域滚动的结构
+            <!-- 左侧分类 -->
+            <div class="category-left">
+                <div class="mui-scroll-wrapper">
+                    <div class="mui-scroll">
+                        <!--这里放置真实显示的DOM内容-->
+                        <ul class="mui-table-view">
+                            <li class="mui-table-view-cell">运动馆</li>
+                    </div>
+                </div>
+
+            </div>
+            <div class="category-right">
+            <div class="mui-scroll-wrapper">
+                    <div class="mui-scroll">
+                        <!--这里放置真实显示的DOM内容-->
+                        <div class="mui-row">
+                            <div class="mui-col-xs-4">
+                                <a href="#">
+                                    <img src="/mobile/images/loading.gif" alt="">
+                                    <p>黄图</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        4. 初始化 分别初始化
+            // 初始化左侧不要滚动条
+            mui('.category-left .mui-scroll-wrapper').scroll({
+                indicators: false, //是否显示滚动条
+                deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+            });
+            // 初始化右侧 需要滚动条
+            mui('.category-right .mui-scroll-wrapper').scroll({
+                indicators: true, //是否显示滚动条
+                deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+            });
+    
+</body>
+</html>

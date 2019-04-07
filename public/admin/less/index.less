@@ -1,0 +1,108 @@
+#main {
+    display: flex;
+
+    .left {
+        width: 200px;
+        background-color: skyblue;
+
+        .user-info {
+            padding: 30px;
+
+            img {
+                width: 140px;
+                height: 140px;
+                border: 10px solid #fff;
+                box-shadow: 0px 0px 2px hotpink;
+                border-radius: 50%;
+            }
+
+            p {
+                text-align: center;
+                margin-top: 10px;
+            }
+        }
+
+        .list-group {
+            .list-group-item {
+                background-color: skyblue;
+                border: 0;
+
+                &.active {
+                    background-color: hotpink;
+                    border-color: hotpink;
+                }
+
+                &:hover {
+                    color: #fff;
+                    background-color: hotpink;
+                    border-color: hotpink;
+                }
+            }
+
+            // .collapse{ 注意不能使用这种会变化的类名去设置样式
+            .category-manage {
+                padding-left: 20px;
+            }
+        }
+    }
+
+    .right {
+        flex: 1;
+
+        .title {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+
+            .btn-menu {
+                font-size: 30px;
+                background-color: yellowgreen;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+            }
+
+            .btn-exit {
+                font-size: 16px;
+                background-color: yellowgreen;
+                width: 60px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+            }
+        }
+
+        .content {
+            padding: 20px;
+            background-color: #eee;
+            .table{
+                background-color: #fff;
+                th,td{
+                    text-align: center;
+                    line-height: 30px;
+                    img{
+                        width: 165px;
+                        height: 85px;
+                    }
+                }
+            }
+            /* 模态框的样式 */
+            .modal{
+                .input-group{
+                    padding: 5px 0;
+                    .brand-logo{
+                        width: 160px;
+                        height: 160px;
+                    }
+                }
+            }
+        }
+    }
+}

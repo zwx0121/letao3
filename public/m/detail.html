@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 1. 设置视口 -->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自己写乐淘移动端商品详情</title>
+    <!-- 1. 引入MUI的CSS文件 使用这个没有压缩 mui.css带了rem单位 -->
+    <link rel="stylesheet" href="./lib/mui/css/mui.css">
+    <!-- 2. 引入fontawesome字体图标库的css文件 提供页面中字体图标-->
+    <link rel="stylesheet" href="./lib/fontAwesome/css/font-awesome.css">
+    <!-- 4. 如果想使用swiper轮播图 因为swiper的css-->
+    <link rel="stylesheet" href="./lib/swiper/css/swiper.css">
+    <!-- 3. 引入自己的css文件 -->
+    <link rel="stylesheet" href="./less/detail.css">
+</head>
+
+<body>
+    <!-- 头部区域 -->
+    <header id="header">
+        <div class="left">
+            <a href="#" class="fa fa-arrow-left"></a>
+        </div>
+        <div class="center">
+            <h4>乐淘商品详情</h4>
+        </div>
+        <div class="right">
+            <!-- 搜索图标 去掉aria等 -->
+            <a href="index.html" class="fa fa-home"></a>
+        </div>
+    </header>
+
+    <!-- 主体区域 -->
+    <main id="main">
+        <!-- 区域滚动父容器 -->
+        <div class="mui-scroll-wrapper">
+            <!-- 区域滚动子容器 -->
+            <div class="mui-scroll">
+                <!--这里放置真实显示的DOM内容-->
+                <section id="detail">
+                    <!-- 轮播图区域 -->
+                    <section id="slide">
+                        <!-- mui的轮播图容器 -->
+                        <div class="mui-slider">
+                            <!-- 轮播图图片容器 如果需要循环也得设置循环 类名 mui-slider-loop-->
+                            <div class="mui-slider-group mui-slider-loop">
+                                <!-- MUI的轮播图不是很完善需要无缝轮播图需要手动添加重复节点第一张是最后一张
+                                    最后一张是第一张 而且多一个重复类名 mui-slider-item-duplicate -->
+                                <!--支持循环，需要重复图片节点-->
+                                <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="images/banner4.png" /></a></div>
+                                <div class="mui-slider-item"><a href="#"><img src="images/banner1.png" /></a></div>
+                                <div class="mui-slider-item"><a href="#"><img src="images/banner2.png" /></a></div>
+                                <div class="mui-slider-item"><a href="#"><img src="images/banner3.png" /></a></div>
+                                <div class="mui-slider-item"><a href="#"><img src="images/banner4.png" /></a></div>
+                                <!--支持循环，需要重复图片节点-->
+                                <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="images/banner1.png" /></a></div>
+                            </div>
+                            <!-- 小圆点 放到slider group旁边 -->
+                            <div class="mui-slider-indicator">
+                                <div class="mui-indicator mui-active"></div>
+                                <div class="mui-indicator"></div>
+                                <div class="mui-indicator"></div>
+                                <div class="mui-indicator"></div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- 详情列表 -->
+                    <section id="detail-list">
+                        <ul class="mui-table-view">
+                            <li class="mui-table-view-cell product-name">
+                                名称：<strong>
+                                    李宁闪击篮球鞋驭帅10镭射队尚4男韦德之道空袭中高帮队尚3.5球鞋
+                                </strong>
+                            </li>
+                            <li class="mui-table-view-cell product-price">
+                                价格：<span>￥1111.11</span> <del>￥2222.22</del>
+                            </li>
+                            <li class="mui-table-view-cell product-size">
+                                尺码： <span>
+                                    <button type="button" class="mui-btn mui-btn-warning">35</button>
+                                    <button type="button" class="mui-btn">35</button>
+                                    <button type="button" class="mui-btn">35</button>
+                                    <button type="button" class="mui-btn">35</button>
+                                    <button type="button" class="mui-btn">35</button>
+                                    <button type="button" class="mui-btn">35</button>
+                                    <button type="button" class="mui-btn">35</button>
+                                    <button type="button" class="mui-btn">35</button>
+                                    <button type="button" class="mui-btn">35</button>
+                                    <button type="button" class="mui-btn">35</button>
+                                    <button type="button" class="mui-btn">35</button>
+                                    <button type="button" class="mui-btn">35</button>
+                                    <button type="button" class="mui-btn">35</button>
+                                </span>
+                            </li>
+                            <li class="mui-table-view-cell product-num">
+                                数量：<div class="mui-numbox" data-numbox-step='1' data-numbox-min='1' data-numbox-max='{{num}}'>
+                                    <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+                                    <input class="mui-numbox-input" type="number" />
+                                    <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+                                </div> 剩余 <span>{{num}}</span> 件
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+    </main>
+    <!-- 底部区域 -->
+    <footer id="footer">
+        <div class="mui-row">
+            <div class="mui-col-xs-2">
+                <a href="cart.html"><i class="fa fa-shopping-cart"></i></a>
+            </div>
+            <div class="mui-col-xs-5">
+                <button type="button" class="mui-btn mui-btn-danger btn-add-cart">加入购物车</button>
+            </div>
+            <div class="mui-col-xs-5">
+                <button type="button" class="mui-btn mui-btn-warning">立即购买</button>
+            </div>
+        </div>
+    </footer>
+    <script id="detailTpl" type="text/html">
+        <!-- 轮播图区域 -->
+        <section id="slide">
+            <!-- mui的轮播图容器 -->
+            <div class="mui-slider">
+                <!-- 轮播图图片容器 如果需要循环也得设置循环 类名 mui-slider-loop-->
+                <div class="mui-slider-group mui-slider-loop">
+                    <!-- MUI的轮播图不是很完善需要无缝轮播图需要手动添加重复节点第一张是最后一张
+                    最后一张是第一张 而且多一个重复类名 mui-slider-item-duplicate -->
+                    <!--支持循环，需要重复图片节点-->
+                    <!-- pic[pic.length-1].picAddr最后一个图片对象里面的图片地址 -->
+                    <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="{{pic[pic.length-1].picAddr}}" /></a></div>
+                    <!-- pic [{…}, {…}] 是图片数组 -->
+                    {{each pic value i}}
+                        <!-- value 数组里面每个图片对象 {id: 1, picName: "product.jpg", productId: 1, picAddr: "/mobile/images/product.jpg"} -->
+                        <div class="mui-slider-item"><a href="#"><img src="{{value.picAddr}}" /></a></div>                   
+                    {{/each}}                   
+                    <!--支持循环，需要重复图片节点-->
+                    <!-- pic[0].picAddr 第一个图片对象的图片地址 -->
+                    <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="{{pic[0].picAddr}}" /></a></div>
+                </div>
+                <!-- 小圆点 放到slider group旁边 -->
+                <div class="mui-slider-indicator">
+                    {{each pic value i}}
+                        <!-- 判断如果i == 0 返回 mui-active 否则返回空 -->
+                        <div class="mui-indicator {{i == 0 ? 'mui-active' : ''}}"></div>
+                    {{/each}}                                     
+                </div>
+            </div>
+        </section>
+        <!-- 详情列表 -->
+        <section id="detail-list">
+            <ul class="mui-table-view">
+                <li class="mui-table-view-cell product-name">
+                    名称：<strong>
+                        <!-- 直接是对象上的属性 不是复杂类型直接写 -->
+                        {{proName}}
+                    </strong>
+                </li>
+                <li class="mui-table-view-cell product-price">
+                    价格：<span>￥{{price}}</span> <del>￥{{oldPrice}}</del>
+                </li>
+                <li class="mui-table-view-cell product-size">
+                    尺码： <span>
+                        {{each size value i}}
+                        <!-- 把尺码绑定到标签的data-size属性上 -->
+                        <button type="button" class="mui-btn {{i == 0 ? 'mui-btn-warning':''}}" data-size="{{value}}">{{value}}</button>
+                        {{/each}}
+                    </span>
+                </li>
+                <li class="mui-table-view-cell product-num">
+                    数量：<div class="mui-numbox" data-numbox-step='1' data-numbox-min='1' data-numbox-max='100'>
+                        <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+                        <input class="mui-numbox-input" type="number" />
+                        <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+                    </div> 剩余 <span>{{num}}</span> 件
+                </li>
+            </ul>
+        </section>
+    </script>
+    <!-- 1. 引入MUI的js文件 -->
+    <script src="./lib/mui/js/mui.js"></script>
+    <!-- 2. 引入zepto 获取元素 发送请求 和jq一样的功能适用移动端-->
+    <script src="./lib/zepto/zepto.min.js"></script>
+    <!-- 3. 有请求使用到模板 引入模板引擎 template-web.js-->
+    <script src="./lib/artTemplate/template-web.js"></script>
+    <!-- 4. 引入swiper的js -->
+    <script src="./lib/swiper/js/swiper.js"></script>
+    <!-- 引入一个公共的js common.js 这里是一些公共的逻辑代码 -->
+    <script src="js/common.js"></script>
+    <!-- 5. 引入自己的js -->
+    <script src="./js/detail.js"></script>
+</body>
+
+</html>

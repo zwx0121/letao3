@@ -1,0 +1,234 @@
+html {
+  font-size: 26.66667vw;
+}
+body {
+  font-size: .14rem;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+img {
+  vertical-align: middle;
+}
+#header {
+  display: flex;
+  background-color: #006699;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+#header .left {
+  width: .45rem;
+  height: .45rem;
+}
+#header .left a {
+  display: block;
+  text-align: center;
+  line-height: .45rem;
+  color: #fff;
+}
+#header .center {
+  flex: 1;
+  text-align: center;
+}
+#header .center h4 {
+  line-height: .45rem;
+  font-weight: normal;
+  color: #fff;
+}
+#header .center form {
+  padding-top: .05rem;
+}
+#header .center form input {
+  background-color: #fff;
+  height: .35rem;
+  margin-bottom: 0;
+  color: #000;
+  text-align: left;
+  font-size: .14rem;
+}
+#header .right {
+  width: .45rem;
+  height: .45rem;
+  text-align: center;
+  line-height: .45rem;
+}
+#header .right a {
+  color: #fff;
+}
+/* 中间的主体区域的样式 这个每个页面都要放到公共样式中 */
+#main {
+  padding: .45rem 0;
+  height: 100vh;
+  position: relative;
+  /* 在main里面的公共的遮罩层样式 */
+}
+#main .mui-scroll-wrapper {
+  position: relative;
+  height: 100%;
+}
+#main .swiper-container {
+  height: 100%;
+}
+#main .swiper-container .swiper-slide {
+  height: auto;
+}
+#main .mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 998;
+  background-color: #ccc;
+}
+#main .mask img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+/* 底部区域 */
+#footer {
+  background-color: #006699;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+#footer a {
+  display: flex;
+  height: .45rem;
+  color: #fff;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#footer a span {
+  line-height: 1;
+}
+#footer a.active {
+  color: orange;
+}
+/* 搜索表单公共样式 */
+.search-form {
+  padding: .1rem;
+}
+.search-form form {
+  display: flex;
+}
+.search-form form input {
+  flex: 1;
+  height: .36rem;
+  border: 1px solid #006699;
+  background-color: #fff;
+  text-align: left;
+  font-size: .14rem;
+  border-radius: .06rem 0 0 .06rem;
+  margin-bottom: 0;
+}
+.search-form form button {
+  width: .6rem;
+  height: .36rem;
+  background-color: #006699;
+  border-color: #006699;
+  border-radius: 0 .06rem .06rem 0;
+}
+/* 公共的CSS的loading动画 */
+.loader {
+  width: 20em;
+  height: 20em;
+  font-size: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 100px auto;
+}
+.loader .face {
+  position: absolute;
+  border-radius: 50%;
+  border-style: solid;
+  animation: animate 3s linear infinite;
+}
+.loader .face:nth-child(1) {
+  width: 100%;
+  height: 100%;
+  color: gold;
+  border-color: currentColor transparent transparent currentColor;
+  border-width: 0.2em 0.2em 0em 0em;
+  --deg: -45deg;
+  animation-direction: normal;
+}
+.loader .face:nth-child(2) {
+  width: 70%;
+  height: 70%;
+  color: lime;
+  border-color: currentColor currentColor transparent transparent;
+  border-width: 0.2em 0em 0em 0.2em;
+  --deg: -135deg;
+  animation-direction: reverse;
+}
+.loader .face .circle {
+  position: absolute;
+  width: 50%;
+  height: 0.1em;
+  top: 50%;
+  left: 50%;
+  background-color: transparent;
+  transform: rotate(var(--deg));
+  transform-origin: left;
+}
+.loader .face .circle::before {
+  position: absolute;
+  top: -0.5em;
+  right: -0.5em;
+  content: '';
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  border-radius: 50%;
+  box-shadow: 0 0 2em, 0 0 4em, 0 0 6em, 0 0 8em, 0 0 10em, 0 0 0 0.5em rgba(255, 255, 0, 0.1);
+}
+@keyframes animate {
+  to {
+    transform: rotate(1turn);
+  }
+}
+/* 商品列表的主体样式 */
+#main .product-list .mui-card-header a {
+  font-size: .14rem;
+  color: #666;
+  text-align: center;
+}
+#main .product-list .mui-card-header a.active {
+  color: red;
+}
+#main .product-list .mui-card-content .mui-col-xs-6 {
+  box-shadow: 0 1px 0 #ccc;
+}
+#main .product-list .mui-card-content .mui-col-xs-6:nth-child(odd) {
+  box-shadow: 1px 1px 0 #ccc;
+}
+#main .product-list .mui-card-content .product {
+  text-align: center;
+  padding: .1rem .05rem;
+}
+#main .product-list .mui-card-content .product .product-img {
+  width: 100%;
+}
+#main .product-list .mui-card-content .product .product-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

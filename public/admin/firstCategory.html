@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>乐淘后台系统一级分类</title>
+    <!-- 1. 需要什么包就引入什么包
+    2. css在head中 js在body结束标签上面
+    3. 如果有依赖的 先引入依赖的再引入不依赖的
+    4. 先引入第三方 在引入自己的 -->
+    <!-- 1. 引入bootstrap.css -->
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
+    <!-- 2. 如果需要字体图标引入字体图标库的css -->
+    <link rel="stylesheet" href="./lib/font-awesome/css/font-awesome.css">
+    <!-- 3. 引入自己css -->
+    <link rel="stylesheet" href="./less/index.css">
+</head>
+
+<body>
+    <!-- 主页主体内容 -->
+    <main id="main">
+        <div class="left">
+            <div class="user-info">
+                <img src="./images/25.png" alt="">
+                <p>LCC</p>
+            </div>
+            <div class="list-group">
+                <a href="index.html" class="list-group-item ">
+                    用户管理
+                </a>
+                <!-- 折叠效果 使用bootstrapjs插件 collapse -->
+                <!-- a就是控制div展开收缩的按钮  -->
+                <!-- data-toggle="collapse" 开关是否开启这个折叠菜单功能 -->
+                <!-- href指定要控制元素 -->
+                <!-- data-target也是指定要控制元素（如果按钮非超链接使用这个属性） -->
+                <a data-toggle="collapse" href="#collapseExample" class="list-group-item">分类管理</a>
+                <!-- 通过id选择器关联 -->
+                <!-- collapse是默认隐藏的类名
+                    如果默认要显示使用collapse in -->
+                <div class="collapse in category-manage" id="collapseExample">
+                    <a href="firstCategory.html" class="list-group-item active">一级分类</a>
+                    <a href="secondCategory.html" class="list-group-item">二级分类</a>
+                </div>
+                <a href="#" class="list-group-item">商品管理</a>
+            </div>
+        </div>
+        <div class="right">
+            <div class="title">
+                <a href="#" class="fa fa-navicon btn-menu"></a>
+                <a href="#" class="fa fa-sign-out btn-exit">退出</a>
+            </div>
+            <div class="content">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                    添加分类
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">添加分类</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group">
+                                    <span class="input-group-addon">分类名称</span>
+                                    <input type="text" class="form-control category-name" placeholder="请输入分类名称">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <!-- 如果点击保存需要关闭模态框添加属性data-dismiss="modal" -->
+                                <button type="button" class="btn btn-primary btn-save" data-dismiss="modal">保存</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 表格  带边框 带条纹 鼠标悬停 -->
+                <table class="table table-bordered table-striped table-hover info">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>分类id</th>
+                            <th>分类名称</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+
+                    </tbody>
+                </table>
+                <!-- 分页 -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination page-list">
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </main>
+    <!-- 创建一个一级分类的模板 -->
+    <script id="firstCategoryTpl" type="text/html">
+        {{each rows value}}
+            <tr>
+                <th scope="row"> <input type="checkbox"> </th>
+                <td>{{value.id}}</td>
+                <td>{{value.categoryName}}</td>               
+            </tr>
+        {{/each}}
+    </script>
+    <!-- 1. bootstrap依赖jquery 先引入jQuery -->
+    <script src="./lib/jquery/jquery.js"></script>
+    <!-- 2. 引入bootstrap的js -->
+    <script src="./lib/bootstrap/js/bootstrap.js"></script>
+    <!-- 3. 引入模板引擎template-web -->
+    <script src="./lib/artTemplate/template-web.js"></script>
+    <!-- 4. 引入jquery+bootstrap的分页插件 -->
+    <script src="./lib/bootstrap/js/bootstrap-paginator.js"></script>
+    <!-- 5. 引入自己的js -->
+    <script src="./js/firstCategory.js"></script>
+</body>
+
+</html>

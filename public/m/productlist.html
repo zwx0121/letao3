@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 1. 设置视口 -->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自己写乐淘移动端商品列表</title>
+    <!-- 1. 引入MUI的CSS文件 使用这个没有压缩 mui.css带了rem单位 -->
+    <link rel="stylesheet" href="./lib/mui/css/mui.css">
+    <!-- 2. 引入fontawesome字体图标库的css文件 提供页面中字体图标-->
+    <link rel="stylesheet" href="./lib/fontAwesome/css/font-awesome.css">
+    <!-- 4. 如果想使用swiper轮播图 因为swiper的css-->
+    <link rel="stylesheet" href="./lib/swiper/css/swiper.css">
+    <!-- 3. 引入自己的css文件 -->
+    <link rel="stylesheet" href="./less/productlist.css">
+</head>
+
+<body>
+    <!-- 头部区域 -->
+    <header id="header">
+        <div class="left">
+            <a href="#" class="fa fa-arrow-left"></a>
+        </div>
+        <div class="center">
+            <h4>商品列表</h4>
+        </div>
+        <div class="right">
+
+        </div>
+    </header>
+
+    <!-- 主体区域 -->
+    <main id="main">
+        <div id="pullrefresh" class="mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <!--这里放置真实显示的DOM内容-->
+                <!-- 搜索表单 -->
+                <div class="search-form">
+                    <form action="#">
+                        <input type="search" placeholder="请输入要搜索的商品" class="input-search">
+                        <button type="button" class="mui-btn mui-btn-primary btn-search">搜索</button>
+                    </form>
+                </div>
+                <!-- 商品列表 -->
+                <div class="product-list">
+                    <div class="mui-card">
+                        <!--页眉，放置标题-->
+                        <div class="mui-card-header">
+                            <!-- .mui-col-xs-3*4>a[href="#"]{上架时间}>i.fa.fa-angle-down -->
+                            <!-- data-type当前按钮排序的方式 data-sort是当前按钮的排序顺序 1升序 2降序 -->
+                            <a href="#" data-type="time" data-sort="2">上架时间<i class="fa fa-angle-down"></i></a>
+                            <a href="#" class="active" data-type="price" data-sort="2">价格<i class="fa fa-angle-down"></i></a>
+                            <a href="#" data-type="num" data-sort="2">销量<i class="fa fa-angle-down"></i></a>
+                            <a href="#" data-type="discount" data-sort="2">折扣<i class="fa fa-angle-down"></i></a>
+                        </div>
+                        <!--内容区-->
+                        <div class="mui-card-content">
+                            <div class="mui-row">
+                                <div class="mui-col-xs-6">
+                                    <!-- 商品容器 -->
+                                    <div class="product">
+                                        <img src="/mobile/images/brand3.png" alt="" class="product-img">
+                                        <p class="product-name">
+                                            李宁闪击篮球鞋驭帅10镭射队尚4男韦德之道空袭中高帮队尚3.5球鞋
+                                        </p>
+                                        <p class="product-price">
+                                            <span>￥888.99</span>
+                                            <del>￥999.99</del>
+                                        </p>
+                                        <button type="button" class="mui-btn mui-btn-primary product-buy">立即购买</button>
+                                    </div>
+                                </div>
+                                <div class="mui-col-xs-6">
+                                    <!-- 商品容器 -->
+                                    <div class="product">
+                                        <img src="/mobile/images/brand3.png" alt="" class="product-img">
+                                        <p class="product-name">
+                                            李宁闪击篮球鞋驭帅10镭射队尚4男韦德之道空袭中高帮队尚3.5球鞋
+                                        </p>
+                                        <p class="product-price">
+                                            <span>￥888.99</span>
+                                            <del>￥999.99</del>
+                                        </p>
+                                        <button type="button" class="mui-btn mui-btn-primary product-buy">立即购买</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 在main里面创建一个遮罩层 把main里面所有内容遮住 -->
+        <div class="mask">
+            <div class="loader">
+                <div class="face">
+                    <div class="circle"></div>
+                </div>
+                <div class="face">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- 底部区域 -->
+    <footer id="footer">
+        <div class="mui-row">
+            <!-- .mui-col-xs-3*4>a[href="index.html"]>i.fa.fa-home+span{首页} -->
+            <div class="mui-col-xs-3"><a href="index.html" class="active"><i class="fa fa-home"></i><span>首页</span></a></div>
+            <div class="mui-col-xs-3"><a href="category.html"><i class="fa fa-bars"></i><span>分类</span></a></div>
+            <div class="mui-col-xs-3"><a href="cart.html"><i class="fa fa-shopping-cart"></i><span>购物车</span></a></div>
+            <div class="mui-col-xs-3"><a href="user.html"><i class="fa fa-user"></i><span>个人中心</span></a></div>
+        </div>
+    </footer>
+    <!-- 创建商品列表的模板 -->
+    <script id="productListTpl" type="text/html">
+        {{each data value}}
+            <div class="mui-col-xs-6">
+                <!-- 商品容器 -->
+                <div class="product">
+                    <!-- value是当前商品对象 value.pic商品的所有图片数组 
+                    value.pic[0]图片数组的第一个图片对象picAddr图片对象图片地址  -->
+                    <img src="{{value.pic[0].picAddr}}" alt="" class="product-img">
+                    <p class="product-name">
+                        {{value.proName}}
+                    </p>
+                    <p class="product-price">
+                        <span>￥{{value.price}}</span>
+                        <del>￥{{value.oldPrice}}</del>
+                    </p>
+                    <!-- 注意立即购买按钮不能使用a跳转
+                    因为MUI在下拉上拉里面阻止了a默认跳转 只能使用tap事件跳转 -->
+                    <button type="button" data-id="{{value.id}}" class="mui-btn mui-btn-primary product-buy">立即购买{{value.num}}</button>
+                </div>
+            </div>   
+        {{/each}}     
+    </script>
+
+    <!-- 1. 引入MUI的js文件 -->
+    <script src="./lib/mui/js/mui.js"></script>
+    <!-- 2. 引入zepto 获取元素 发送请求 和jq一样的功能适用移动端-->
+    <script src="./lib/zepto/zepto.min.js"></script>
+    <!-- 3. 有请求使用到模板 引入模板引擎 template-web.js-->
+    <script src="./lib/artTemplate/template-web.js"></script>
+    <!-- 4. 引入swiper的js -->
+    <script src="./lib/swiper/js/swiper.js"></script>
+    <!-- 引入一个公共的js common.js 这里是一些公共的逻辑代码 -->
+    <script src="js/common.js"></script>
+    <!-- 5. 引入自己的js -->
+    <script src="./js/productlist.js"></script>
+</body>
+
+</html>

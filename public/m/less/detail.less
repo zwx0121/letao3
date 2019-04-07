@@ -1,0 +1,43 @@
+@import 'base.less';
+
+/* 详情的主体样式 */
+#main{
+    // 详情列表的样式
+    #detail-list{
+        .product-price{
+            span{
+                color:red;
+                font-weight: 600;
+            }
+            del{
+                color:#ccc;
+            }
+        }
+        .product-size{
+            // 设置左边文字和右边的按钮居中对齐
+            line-height: .33rem;
+            span{
+                .mui-btn{
+                    margin-bottom: .05rem;
+                }
+            }
+        }
+    }
+}
+
+#footer{
+    background-color: #ccc;
+    .fa-shopping-cart{
+        font-size: 20px;
+        color:#666;
+    }
+    .mui-row{
+        // 给右边2个栅格设置一点间距让按钮居中
+        >.mui-col-xs-5{
+            padding: 0.06rem .05rem;
+            button{
+                width: 100%;
+            }
+        }
+    }
+}

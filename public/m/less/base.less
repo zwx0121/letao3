@@ -1,0 +1,172 @@
+// 乐淘移动端的主题色
+@main-color: #006699;
+
+// 为了做屏幕要设置html的根元素
+html {
+    // 假设 375 屏幕 根元素100  换成vw单位   100 / 375 * 100   100/3.75
+    font-size: 26.66667vw;
+}
+
+// MUI设置了一些默认样式 但是我们并不需要
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+// 手动添加解决图片3px间隙
+img {
+    vertical-align: middle;
+}
+
+// 乐淘主页所有公共样式
+
+// 封装一个类似js函数 把一些重复使用代码封装到函数里面 在less里面也有函数 他的函数就类名写法一样
+// 定义了一个类名使用flex实现内容水平垂直居中
+.dfcc() {
+    // 把需要水平垂直居中的样式代码放到这个公共的类名里面
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bt() {
+    border-top: 1px solid #ccc;
+}
+
+.bb() {
+    border-bottom: 1px solid #ccc;
+}
+
+// 函数还可以传参数  @width参数名 叫@width   :1px 如果不传的默认值  ,多个参数用逗号隔开
+.bl(@width: 1px, @style: solid, @color: #ccc) {
+    border-left: @width @style @color;
+}
+
+.br() {
+    border-right: 1px solid #ccc;
+}
+
+// 给body设置默认样式让内容垂直排列
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    // 给页面设置字体大小为14px 因为mui设置默认20px
+    font-size: .14rem;
+    // 把body行高换成14px 默认21有点高
+    line-height: .14rem;
+}
+
+// 头部区域的样式
+#header {
+    // 设置默认背景色为主题色
+    background-color: @main-color;
+    display: flex;
+    height: .45rem;
+
+    .left {
+        // 所有单位都换成rem 单独针对移动端 要做rem适配
+        width: .45rem;
+        height: .45rem;
+
+        a {
+            color: #fff;
+            height: .45rem;
+            .dfcc();
+        }
+    }
+
+    .center {
+        flex: 1;
+
+        // .bl(2px,dashed,red);
+        h4 {
+            color: #fff;
+            font-weight: normal;
+            // 调用封装的一个函数
+            .dfcc();
+            height: 100%;
+        }
+
+        form {
+            padding-top: .05rem;
+
+            input {
+                background-color: #fff;
+                height: 35px;
+                text-align: left;
+                font-size: .14rem;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .right {
+        // 所有单位都换成rem 单独针对移动端 要做rem适配
+        width: .45rem;
+        height: .45rem;
+        // 调用封装的一个函数
+        .dfcc();
+
+        // .bl();
+        a {
+            color: #fff;
+        }
+    }
+}
+
+// 主体部分公共样式
+#main {
+    flex: 1;
+    overflow: hidden;
+
+    // 1. 给父元素比如main设置相对定位
+    // position: relative;
+    // 区域滚动的父容器
+    .mui-scroll-wrapper {
+        // 默认设置了绝对定位所以飘了
+        // 2. 给自己 区域滚动父容器设置相对定位 但是默认没有高度 设置成父元素一样高
+        // position: absolute;
+        position: relative;
+        // 手动设置高度和父元素一样
+        height: 100%;
+        // 区域滚动子容器 高度是auto的
+        // .mui-scroll{
+
+        // }
+    }
+}
+
+/* 底部公共的样式 */
+#footer {
+    background-color: @main-color;
+    height: .45rem;
+
+    .mui-row {
+        >div {
+            a {
+                height: .45rem;
+                color: #fff;
+                // 调用公共函数实现内容水平垂直居中
+                .dfcc();
+
+                &.active {
+                    color: orange;
+                }
+
+                i {
+                    display: block;
+                }
+
+                span {
+                    display: block;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,65 @@
+@import 'base.less';
+
+
+#main {
+
+    /* 主页导航条的样式 */
+    #nav {
+        padding: .1rem;
+
+        a {
+            display: block;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    /* 广告区域的样式 */
+    #banner {
+        padding: 0 10px;
+
+        a {
+            display: block;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        // 给左边的设置高度为120px 对应的rem
+        .mui-col-xs-8 {
+            a {
+                img {
+                    height: 1.2rem;
+                }
+            }
+        }
+
+        // 给右边的设置高度为240px 对应的rem
+        .mui-col-xs-4 {
+            a {
+                img {
+                    height: 2.4rem;
+                }
+            }
+        }
+    }
+
+    /* 品牌专区的样式 */
+    #brand,
+    #sport,
+    #woman,
+    #man {
+        padding: 10px;
+
+        a {
+            display: block;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
